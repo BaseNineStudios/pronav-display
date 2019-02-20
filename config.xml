@@ -9,6 +9,8 @@
 
   <name>ProNav Display</name>
 
+  <icon src="icon.png" />
+
   <description>
       Trade show display app for PrONav
   </description>
