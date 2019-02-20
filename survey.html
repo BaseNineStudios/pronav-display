@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Pronav</title>
+  <meta name="description" content="Pronav">
+  <meta name="author" content="Pronav">
+  <meta name="viewport" content="width=device-width">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i" rel="stylesheet">
+  <!-- STYLES -->
+  <link rel="stylesheet" href="_assets/_css/style.css?v=1.0">
+  <!--[if lt IE 9]>
+    <script src="_assets/_js/html5shiv.js"></script>
+  <![endif]-->
+</head>
+
+<body class="body-home">
+	
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.js"></script> 
+    <script src="http://malsup.github.com/jquery.form.js"></script> 
+ <script src="_assets/_js/chosen/chosen.jquery.min.js"></script>
+    <script> 
+        // wait for the DOM to be loaded 
+        $(document).ready(function() { 
+            // bind 'myForm' and provide a simple callback function 
+            $('#surveyForm').ajaxForm(function() { 
+							
+                //alert("Thank you for your comment!"); 
+            }); 
+					$('#motorSelect').chosen();
+        }); 
+    </script> 
+	
+			<form id="surveyForm" action="comment.php" method="post">
+				<div class="form-group">
+					<h1>Enter to Win!</h1>
+				</div>
+				<div class="form-group">
+					<label for="name">Name: </label>
+					<input type="text" name="name" placeholder="Name" /> 
+				</div>
+				<div class="form-group">
+					<p>Please enter either your email or Phone Number</p>
+				</div>
+				<div class="form-group">
+					<label for="email">Email: </label>
+					<input type="email" name="email" placeholder="Email" /> 
+				</div>
+				<div class="form-group">
+					<label for="phone">Phone: </label>
+					<input type="phone" name="phone" placeholder="Phone" /> 
+				</div>
+				<div class="form-group">
+					<label for="motor">Choose your Motor: </label>
+					<select id="motorSelect" name="motor" class="motor-select">
+						<option></option>
+					</select>
+				</div>
+				<div class="form-group">
+					<input type="submit" value="Submit" /> 
+				</div>
+		</form>
+
+
+</body>
+</html>
