@@ -7,7 +7,8 @@
   <meta name="author" content="Pronav">
   <meta name="viewport" content="width=device-width">
   <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i" rel="stylesheet">
-  <!-- STYLES -->
+  <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">  
+<!-- STYLES -->
   <link href="assets/js/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/style.css?v=1.0">
   <!--[if lt IE 9]>
@@ -131,9 +132,37 @@
   </div>
 
   <div id="pronavForm" style="display:none">
-    <form>
-      <p>Lorem ipsum form goes here</p>
-    </form>
+    <div class="container-fluid">
+      <div class="card" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title">Sign In</h5>
+          <form>
+            <div class="form-group">
+              <label for="firstname">First name</label>
+              <input type="text" name="firstname" class="form-control" id="firstname" placeholder="Enter First name">
+            </div>
+            <div class="form-group">
+              <label for="lastname">Last name</label>
+              <input name="lastname" class="form-control" id="lastname" placeholder="Enter Last name">
+            </div>
+            <div class="form-group">
+              <label for="email">Email address</label>
+              <input type="email" class="form-control" id="email" placeholder="Enter email">
+            </div>
+          </form>
+          <a href="#" id="submit" class="btn btn-primary">Submit</a>
+          <a href="#" id="request" class="btn btn-warning">Get Contacts</a>
+        </div>
+      </div>
+
+      <div class="card" style="width: 36rem;">
+        <div class="card-body">
+          <div class="output">
+
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
 
@@ -144,7 +173,39 @@
   <script src="assets/js/fancybox/source/helpers/jquery.fancybox-media.js?v=1.0.6"></script>
   <script src="assets/js/chosen/chosen.jquery.min.js"></script>
   <script src="assets/js/main.js?v=1.0.0"></script>
+  <script src="assets/js/popper.js"></script>
+  <script src="assets/js/bootstrap.min.js"></script>
 
+      <script type="text/javascript">
+      var contacts = [];
+      if(typeof(Storage) !== "undefined") {
+        contacts = JSON.parse(localStorage.getItem("contacts"));
+      }
+
+      $(document).ready(function() {
+        $(document).on('click', '#submit', function(e) {
+          var firstname = $("#firstname").val();
+          var lastname = $("#lastname").val();
+          var email = $("#email").val();
+          var me = {
+            first: firstname,
+            last: lastname,
+            email: email
+          };
+          contacts.push(me);
+          $("form input").val("");
+          localStorage.setItem("contacts", JSON.stringify(contacts));
+        });
+
+        $(document).on('click', '#request', function(e) {
+          var op = "";
+          $.each(contacts, function(k, v) {
+            op += v.last+", "+v.first+", "+v.email+";";
+          });
+          $(".output").html(op);
+        });
+      });
+    </script>
 
 </body>
 </html>
