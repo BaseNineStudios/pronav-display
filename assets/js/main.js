@@ -56,21 +56,31 @@
         }); // window scroll
 
     $(document).ready(function () {
-			
-			
+
+      $(document).on('fancybox-cleanup', function(){
+        $('video,audio').trigger('stop');
+      });
 
       if ($('.fancybox').length) {
         $(".fancybox").fancybox({
               // maxWidth    : 800,
               // maxHeight   : 600,
               fitToView   : false,
-              width       : '90%',
-              height      : '70%',
+              width       : '100%',
+              height      : '93%',
               autoSize    : false,
               closeClick  : false,
               openEffect  : 'none',
               closeEffect : 'none',
-              type: "iframe"
+              afterShow: function() {
+                this.content.find('video').trigger('play')
+              },
+              afterClose: function() {
+                $('video').each(function() {
+                  this.pause();
+                  this.currentTime = 0;
+                });
+              }
           });
         }
 

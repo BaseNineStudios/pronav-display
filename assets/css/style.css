@@ -49,9 +49,9 @@ table {
   box-sizing: border-box; }
 
 p {
-  font-size: 14px;
+  font-size: 12px;
   line-height: 1.25em;
-  margin-top: 20px; }
+  margin-top: 15px; }
   p:first-child {
     margin-top: 0px; }
 
@@ -187,7 +187,7 @@ strong {
     display: flex;
     width: 100%;
     height: 100%;
-    padding: 50px; }
+    padding: 20px; }
     .wrapper-inner .main-page .slider-container {
       flex: none;
       width: 100%;
@@ -218,14 +218,15 @@ strong {
       z-index: 2;
       display: flex;
       flex-direction: column;
-      justify-content: center; }
+      justify-content: center;
+      padding: 20px; }
       .wrapper-inner .main-page .content-container h2 {
         font-size: 30px;
         font-weight: 600;
         text-transform: uppercase;
         color: #333; }
       .wrapper-inner .main-page .content-container p, .wrapper-inner .main-page .content-container li {
-        font-size: 24px;
+        font-size: 18px;
         line-height: 1.3em; }
       .wrapper-inner .main-page .content-container ul {
         margin-top: 30px;
@@ -267,7 +268,8 @@ strong {
             transform: translate(-50%, -50%); }
         .wrapper-inner .main-page .callout-container .callout .callout-copy {
           flex: 1 0 auto;
-          padding: 20px; }
+          padding: 20px;
+          font-size: 12px; }
           .wrapper-inner .main-page .callout-container .callout .callout-copy .callout-title {
             font-size: 30px;
             color: #4d4845;
@@ -275,9 +277,10 @@ strong {
             font-weight: 500;
             margin-bottom: 10px; }
           .wrapper-inner .main-page .callout-container .callout .callout-copy li {
-            margin-top: 10px; }
-            .wrapper-inner .main-page .callout-container .callout .callout-copy li:first-child {
-              margin: 0; }
+            list-style-type: disc;
+            margin-top: 10px;
+            margin-left: 20px;
+            line-height: 1.25em; }
         .wrapper-inner .main-page .callout-container .callout .callout-icons {
           height: 100px;
           flex: 0 0 100px;
@@ -292,7 +295,7 @@ strong {
             height: auto; }
 
 .body-subpage .main-page {
-  background-image: url(../_img/page-bg.jpg);
+  background-image: url(../../page-bg.jpg);
   background-size: cover; }
 
 .footer-home {
@@ -325,5 +328,12 @@ strong {
     line-height: 35px; }
   .footer .footer-logo {
     flex: 0 0 150px; }
+
+.fancybox-skin {
+  background: #000 !important; }
+
+video {
+  width: 100%    !important;
+  height: auto   !important; }
 
 /*# sourceMappingURL=style.css.map */
