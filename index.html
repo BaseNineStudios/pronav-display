@@ -142,7 +142,7 @@
       <div class="card" style="width: 80%;margin:0 auto;float:none;">
         <div class="card-body">
           <h5 class="card-title">Sign In</h5>
-          <form class="needs-validation" novalidate>
+          <form>
             <div class="form-group">
               <label for="name">Name <span class="req">*</span></label>
               <input type="text" name="name" class="form-control" id="name" placeholder="Enter name" required />
@@ -154,28 +154,36 @@
                 <li style="padding: 10px;">
                   <div class="form-check">
                     <input type="checkbox" name="all" id="all" class="form-check-input" value="1" />
-                    <label for="all" style="font-weight:bold;">Select All</label>
+                    <label id="all_lbl" for="all" style="font-weight:bold;">Select All</label>
                   </div>
                 </li>
                 <li style="padding: 10px;">
                   <div class="form-check">
-                    <input type="checkbox" name="phone" id="phone" class="form-check-input" value="Phone" />
+                    <input type="checkbox" name="phone" id="phone_chk" class="pref form-check-input" value="Phone" />
                     <label for="phone">Phone</label>
                   </div>
                 </li>
                 <li style="padding: 10px;">
                   <div class="form-check">
-                    <input type="checkbox" name="email" class="form-check-input" value="Email" />
+                    <input type="checkbox" name="email" id="email_chk" class="pref form-check-input" value="Email" />
                     <label for="email">Email</label>
                   </div>
                 </li>
                 <li style="padding: 10px;">
                   <div class="form-check">
-                    <input type="checkbox" name="text" class="form-check-input" value="Text" />
+                    <input type="checkbox" name="text" id="text_chk" class="pref form-check-input" value="Text" />
                     <label for="text">Text</label>
                   </div>
                 </li>
               </ul>
+            </div>
+            <div class="form-group" id="phone-group" style="display:none;">
+              <label for="phone">Phone Number</label>
+              <input type="text" name="phone" class="form-control" id="phone" />
+            </div>
+            <div class="form-group" id="email-group" style="display:none;">
+              <label for="email">Email</label>
+              <input type="text" name="email" class="form-control" id="email" />
             </div>
             <div class="form-group">
               <label for="model">What is the model of your current trolling motor? <span class="req">*</span></label>
@@ -222,12 +230,28 @@
 
       $(document).ready(function() {
         $(document).on('click', '#submit', function(e) {
+          e.preventDefault();
+          var pref = [];
           var name = $("#name").val();
-   
-          //contacts.push(info);
-          //$("form input").val("");
-          //localStorage.setItem("contacts", JSON.stringify(contacts));
-          //console.log(localStorage.getItem("contacts"));
+          $.each($(".pref"), function(k, v) {
+            if(v.checked)
+              pref.push($(v).val());
+          });
+          var phone = $("#phone").val();
+          var email = $("#email").val();
+          var motor = $("#model").val();
+
+          var info = {
+            name: name,
+            contact_pref: JSON.stringify(pref),
+            phone: phone,
+            email: email,
+            motor_model: motor 
+          };
+ 
+          contacts.push(info);
+          $("form input").val("");
+          localStorage.setItem("contacts", JSON.stringify(contacts));
         });
 
         $(document).on('click', '#request', function(e) {
@@ -237,10 +261,65 @@
           });
           $(".output").html(op);
         });
+
+        $(document).on('click', '#all', function(e) {
+          if(this.checked) {
+            $("#all_lbl").text("Deselect All");
+            $('#phone_chk, #email_chk, #text_chk').attr("checked", true);
+            $("#phone-group, #email-group").show(500);
+          } else {
+            $("#all_lbl").text("Select All");
+            $('#phone_chk, #email_chk, #text_chk').attr("checked", false);
+            $("#phone-group, #email-group").hide(500);
+          }
+        });
+
+        $(document).on('click', '#phone_chk', function(e) {
+          if(this.checked) {
+            $("#phone-group").show(500);
+          } else {
+            if(!$("#text_chk").attr("checked")) {
+              $("#phone-group").hide(500);
+            }
+            if($("#all"),attr("checked")) {
+              $("#all").attr("checked", false);
+              $("#all_lbl").text("Select All");
+            }
+          }
+        });
+
+        $(document).on('click', '#text_chk', function(e) {
+          console.log($("#all").attr("checked"));
+          if(this.checked) {
+            $("#phone-group").show(500);
+          } else {
+            if(!$("#phone_chk").attr("checked")) {
+              $("#phone-group").hide(500);
+            }   
+            if($("#all"),attr("checked")) {
+              $("#all").attr("checked", false);
+              $("#all_lbl").text("Select All");
+            }   
+          }   
+        });
+
+        $(document).on('click', '#email_chk', function(e) {
+          if(this.checked) {
+            $("#email-group").show(500);
+          } else {
+            $("#email-group").hide(500);
+            if($("#all"),attr("checked")) {
+              $("#all").attr("checked", false);
+              $("#all_lbl").text("Select All");
+            }   
+          }   
+        });  
+
       });
     </script>
     <script>
       // Example starter JavaScript for disabling form submissions if there are invalid fields
+
       (function() {
         'use strict';
         window.addEventListener('load', function() {
