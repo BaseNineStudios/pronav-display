@@ -125,7 +125,7 @@
     <footer class="footer" role="footer">
 
       <div class="footer-text">one year satisfaction guarantee   |   two year warranty  |  free app and firmware updates for life</div>
-      <div class="footer-logo"><a href="index.html"><img src="pronav-logo-white.png" alt="ProNav" /></a></div>
+      <div class="footer-logo"><a href="output.html"><img src="pronav-logo-white.png" alt="ProNav" /></a></div>
     </footer>
 
   </div>
@@ -248,7 +248,9 @@
             email: email,
             motor_model: motor 
           };
-          console.log(info); 
+          if(contacts === null)
+            contacts = [];
+           
           contacts.push(info);
           $("form input").val("");
           localStorage.setItem("contacts", JSON.stringify(contacts));

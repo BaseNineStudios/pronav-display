@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="assets/js/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript">
+      //localStorage.setItem("contacts", null);
+      $(document).ready(function() {
+        var contacts = JSON.parse(localStorage.getItem("contacts"));
+        $.each(contacts, function(k, v) {
+          $(".output").append("<p>"+v.name+", "+v.contact_pref+", "+v.phone+", "+v.email+", "+v.motor_model+";</p>");
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <div class="output"></div>
+  </body>
+</html>
