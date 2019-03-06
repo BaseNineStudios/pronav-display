@@ -203,7 +203,7 @@
               </select>
             </div>
             <div class="form-group">
-              <button class="btn btn-primary" type="submit" id="submit">Submit form</button>
+              <button class="btn btn-primary" id="submit">Submit form</button>
             </div>
           </form>
         </div>
@@ -248,7 +248,7 @@
             email: email,
             motor_model: motor 
           };
- 
+          console.log(info); 
           contacts.push(info);
           $("form input").val("");
           localStorage.setItem("contacts", JSON.stringify(contacts));
@@ -262,15 +262,15 @@
           $(".output").html(op);
         });
 
-        $(document).on('click', '#all', function(e) {
-          if(this.checked) {
-            $("#all_lbl").text("Deselect All");
-            $('#phone_chk, #email_chk, #text_chk').attr("checked", true);
+        $("#all").click(function () {
+          var checked = $(this).prop('checked');
+          $(".pref").prop('checked', checked);
+          if(checked) {
             $("#phone-group, #email-group").show(500);
+            $('#all_lbl').text("Deselect All");
           } else {
-            $("#all_lbl").text("Select All");
-            $('#phone_chk, #email_chk, #text_chk').attr("checked", false);
             $("#phone-group, #email-group").hide(500);
+            $('#all_lbl').text("Select All");
           }
         });
 
@@ -278,28 +278,23 @@
           if(this.checked) {
             $("#phone-group").show(500);
           } else {
-            if(!$("#text_chk").attr("checked")) {
+            if(!$("#text_chk").prop("checked")) {
               $("#phone-group").hide(500);
-            }
-            if($("#all"),attr("checked")) {
-              $("#all").attr("checked", false);
-              $("#all_lbl").text("Select All");
-            }
-          }
-        });
+            }   
+            $("#all").prop("checked", false);
+            $("#all_lbl").text("Select All");
+          }   
+        }); 
 
         $(document).on('click', '#text_chk', function(e) {
-          console.log($("#all").attr("checked"));
           if(this.checked) {
             $("#phone-group").show(500);
           } else {
-            if(!$("#phone_chk").attr("checked")) {
+            if(!$("#phone_chk").prop("checked")) {
               $("#phone-group").hide(500);
             }   
-            if($("#all"),attr("checked")) {
-              $("#all").attr("checked", false);
-              $("#all_lbl").text("Select All");
-            }   
+            $("#all").prop("checked", false);
+            $("#all_lbl").text("Select All");
           }   
         });
 
@@ -308,12 +303,10 @@
             $("#email-group").show(500);
           } else {
             $("#email-group").hide(500);
-            if($("#all"),attr("checked")) {
-              $("#all").attr("checked", false);
-              $("#all_lbl").text("Select All");
-            }   
+            $("#all").prop("checked", false);
+            $("#all_lbl").text("Select All");
           }   
-        });  
+        }); 
 
       });
     </script>
