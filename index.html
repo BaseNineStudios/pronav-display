@@ -262,7 +262,7 @@
                   <label for="routes">Routes</label>
                 </li>
                 <li style="padding: 10px;">
-                  <input type="checkbox" name="amchor" class="features" value="Anchor" />
+                  <input type="checkbox" name="anchor" class="features" value="Anchor" />
                   <label for="anchor">Anchor</label>
                 </li>
                 <li style="padding: 10px;">
@@ -277,7 +277,7 @@
             </div>
             <div class="form-group">
               <label for="why_not">What is the biggest reason that you would NOT buy a ProNav Angler</label>
-              <textarea name="why_not" class="form-control"></textarea> 
+              <textarea id="why_not" name="why_not" class="form-control"></textarea> 
             </div>
           </form>
           <a href="#" id="submit" class="btn btn-primary">Submit</a>
@@ -306,17 +306,46 @@
 
       $(document).ready(function() {
         $(document).on('click', '#submit', function(e) {
-          var firstname = $("#firstname").val();
-          var lastname = $("#lastname").val();
+          var name = $("#name").val();
           var email = $("#email").val();
-          var me = {
-            first: firstname,
-            last: lastname,
-            email: email
+          var phone = $("#phone").val();
+          var motor = $("#motor").val();
+          var info_source = [];
+          $.each($(".info_source"), function(k, v) {
+            if(v.checked)
+              info_source.push($(v).val());
+          });
+          
+          var days_on_water = $(".days_on_water:checked").val();
+          var likely = $(".likely:checked").val();
+          
+          var features = [];
+          $.each($(".features"), function(k, v) {
+            if(v.checked)
+              features.push($(v).val());
+          });
+
+          var why_not = $("#why_not").val();
+
+          var info = {
+            name: name,
+            email: email,
+            phone: phone,
+            motor: motor,
+            days_on_water: days_on_water,
+            info_source: JSON.stringify(info_source),
+            likely_to_purchase: likely,
+            liked_features: JSON.stringify(features),
+            reason_why_not: why_not
           };
-          contacts.push(me);
+          
+          //REMOVE
+          //localStorage.removeItem("contacts");
+
+          contacts.push(info);
           $("form input").val("");
           localStorage.setItem("contacts", JSON.stringify(contacts));
+          console.log(localStorage.getItem("contacts"));
         });
 
         $(document).on('click', '#request', function(e) {
