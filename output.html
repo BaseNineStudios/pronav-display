@@ -2,17 +2,32 @@
 <html>
   <head>
     <style>
+      body {
+        padding:30px;
+      }
       textarea {
         width: 98%;
         margin: 0 auto;
         min-height: 500px;
         height: 100%;
         border-style: none;
+        font-size:18px;
       }
 
       textarea:disabled {
         color: #000;
         background: #fff;
+
+      }
+
+      .buttons {
+        margin:0px 0px 30px;
+      }
+
+      button {
+        border:1px solid #ccc;
+        font-size:18px;
+
       }
 
     </style>
@@ -26,7 +41,7 @@
         var copyText = document.getElementById("output");
         copyText.select();
         document.execCommand("copy");
-        
+
       }
 
       $(document).ready(function() {
@@ -41,9 +56,9 @@
   </head>
   <body>
     <div class="buttons">
-      <button onClick="window.history.back()">Back</button>
-      <button onClick="copyOutput()">Copy Output</button>
+      <button onClick="window.history.back()">&laquo; Back to Display App</button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <button onClick="copyOutput()">Copy Form Output CSV to Clipboard</button>
     </div>
-    <textarea disabled class="output" id="output"></textarea>
+    <textarea class="output" id="output"></textarea>
   </body>
 </html>
