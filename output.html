@@ -1,18 +1,49 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <style>
+      textarea {
+        width: 98%;
+        margin: 0 auto;
+        min-height: 500px;
+        height: 100%;
+        border-style: none;
+      }
+
+      textarea:disabled {
+        color: #000;
+        background: #fff;
+      }
+
+    </style>
+
     <script src="assets/js/jquery-3.2.1.min.js"></script>
     <script type="text/javascript">
+      //Uncomment to clear cache
       //localStorage.setItem("contacts", null);
+
+      var copyOutput = () => {
+        var copyText = document.getElementById("output");
+        copyText.select();
+        document.execCommand("copy");
+        
+      }
+
       $(document).ready(function() {
         var contacts = JSON.parse(localStorage.getItem("contacts"));
+        var op = "";
         $.each(contacts, function(k, v) {
-          $(".output").append("<p>"+v.name+", "+v.contact_pref+", "+v.phone+", "+v.email+", "+v.motor_model+";</p>");
+          op += v.name+", "+v.contact_pref+", "+v.phone+", "+v.email+", "+v.motor_model+";\n";
         });
+        $(".output").val(op);
       });
     </script>
   </head>
   <body>
-    <div class="output"></div>
+    <div class="buttons">
+      <button onClick="window.history.back()">Back</button>
+      <button onClick="copyOutput()">Copy Output</button>
+    </div>
+    <textarea disabled class="output" id="output"></textarea>
   </body>
 </html>
