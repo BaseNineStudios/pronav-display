@@ -219,14 +219,22 @@ strong {
       display: flex;
       flex-direction: column;
       justify-content: center;
-      padding: 20px; }
+      padding: 20px 40px 20px 20px; }
+      .wrapper-inner .main-page .content-container .scroll {
+        max-height: 100%;
+        overflow: scroll;
+        padding-right: 20px;
+        position: absolute;
+        top: 30px;
+        bottom: 30px;
+        width: 94%; }
       .wrapper-inner .main-page .content-container h2 {
         font-size: 30px;
         font-weight: 600;
         text-transform: uppercase;
         color: #333; }
       .wrapper-inner .main-page .content-container p, .wrapper-inner .main-page .content-container li {
-        font-size: 18px;
+        font-size: 30px;
         line-height: 1.3em; }
       .wrapper-inner .main-page .content-container ul {
         margin-top: 30px;
@@ -234,12 +242,14 @@ strong {
         .wrapper-inner .main-page .content-container ul li {
           list-style-type: disc; }
     .wrapper-inner .main-page .callout-container {
-      flex: 0 0 50%;
+      flex: 0 0 auto;
       display: flex;
-      justify-content: center;
+      justify-content: flex-start;
       flex-direction: column;
       position: relative;
-      z-index: 2; }
+      z-index: 2;
+      padding-right: 30px;
+      padding-top: 20px; }
       .wrapper-inner .main-page .callout-container .callout {
         padding: 10px;
         background: #fff;
@@ -268,8 +278,14 @@ strong {
             transform: translate(-50%, -50%); }
         .wrapper-inner .main-page .callout-container .callout .callout-copy {
           flex: 1 0 auto;
-          padding: 20px;
-          font-size: 12px; }
+          padding: 20px 20px 0px 20px;
+          margin: 0px 0px 20px 0px;
+          height: 490px;
+          overflow: scroll; }
+          .wrapper-inner .main-page .callout-container .callout .callout-copy.callout-copy-with-video {
+            height: 270px; }
+          .wrapper-inner .main-page .callout-container .callout .callout-copy.callout-copy-home {
+            height: 230px; }
           .wrapper-inner .main-page .callout-container .callout .callout-copy .callout-title {
             font-size: 30px;
             color: #4d4845;
@@ -281,6 +297,8 @@ strong {
             margin-top: 10px;
             margin-left: 20px;
             line-height: 1.25em; }
+          .wrapper-inner .main-page .callout-container .callout .callout-copy p, .wrapper-inner .main-page .callout-container .callout .callout-copy li {
+            font-size: 22px; }
         .wrapper-inner .main-page .callout-container .callout .callout-icons {
           height: 100px;
           flex: 0 0 100px;
