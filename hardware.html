@@ -7,8 +7,8 @@
   <meta name="author" content="Pronav">
   <meta name="viewport" content="width=device-width">
   <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i" rel="stylesheet">
-  <!-- STYLES -->
   <link href="assets/js/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
   <link rel="stylesheet" href="assets/css/style.css?v=1.0">
   <!--[if lt IE 9]>
     <script src="assets/js/html5shiv.js"></script>
@@ -117,15 +117,89 @@
     <footer class="footer" role="footer">
 
       <div class="footer-text">one year satisfaction guarantee   |   two year warranty  |  free app and firmware updates for life</div>
-      <div class="footer-logo"><a href="index.html"><img src="pronav-logo-white.png" alt="ProNav" /></a></div>
+      <div class="footer-logo"><a href="output.html"><img src="pronav-logo-white.png" alt="ProNav" /></a></div>
     </footer>
 
   </div>
 
   <div id="pronavForm" style="display:none">
-    <form>
-      <p>Lorem ipsum form goes here</p>
-    </form>
+    <div class="container-fluid" style="width: 80%;margin:0 auto;float:none;">
+
+      <h1 style="margin:30px 0px;font-size:36px;">2019 Giveaway Survey</h1>
+
+      <div class="card" style="width: 100%;margin:0 auto;float:none;">
+
+        <div class="card-body">
+          <!-- <h5 class="card-title">Sign In</h5> -->
+          <form class="needs-validation" novalidate>
+            <div class="form-group">
+              <label for="name">Name <span class="req">*</span></label>
+              <input type="text" name="name" class="form-control" id="name" placeholder="Enter name" required />
+              <div class="invalid-feedback">Please provide your name.</div>
+            </div>
+            <div class="form-group">
+              <label for="info_source">Contact Preference <span class="req">*</span>
+              <ul>
+                <li style="padding: 10px;">
+                  <div class="form-check">
+                    <input type="checkbox" name="all" id="all" class="form-check-input" value="1" />
+                    <label id="all_lbl" for="all" style="font-weight:bold;">Select All</label>
+                  </div>
+                </li>
+                <li style="padding: 10px;">
+                  <div class="form-check">
+                    <input type="checkbox" name="phone" id="phone_chk" class="pref form-check-input" value="Phone" />
+                    <label for="phone">Phone</label>
+                  </div>
+                </li>
+                <li style="padding: 10px;">
+                  <div class="form-check">
+                    <input type="checkbox" name="email" id="email_chk" class="pref form-check-input" value="Email" />
+                    <label for="email">Email</label>
+                  </div>
+                </li>
+                <li style="padding: 10px;">
+                  <div class="form-check">
+                    <input type="checkbox" name="text" id="text_chk" class="pref form-check-input" value="Text" />
+                    <label for="text">Text</label>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="form-group" id="phone-group" style="display:none;">
+              <label for="phone">Phone Number</label>
+              <input type="text" name="phone" class="form-control" id="phone" />
+              <div class="invalid-feedback">Please enter your phone number.</div>
+            </div>
+            <div class="form-group" id="email-group" style="display:none;">
+              <label for="email">Email</label>
+              <input type="email" name="email" class="form-control" id="email" />
+              <div class="invalid-feedback">Please provide a valid email address.</div>
+            </div>
+            <div class="form-group">
+              <label for="model">What is the model of your current trolling motor? <span class="req">*</span></label>
+              <select id="model" class="form-control" name="model" required>
+                <option value="" selected="selected" class="gf_placeholder">Select an option below:</option>
+                <option value="None">None</option>
+                <option value="Minn Kota PowerDrive V2">Minn Kota PowerDrive V2</option>
+                <option value="Minn Kota PowerDrive 2016 or Newer">Minn Kota PowerDrive 2016 or Newer</option>
+                <option value="Minn Kota PowerDrive (Legacy or pre 2007)">Minn Kota PowerDrive (Legacy or pre 2007)</option>
+                <option value="Minn Kota Terrova">Minn Kota Terrova</option>
+                <option value="Minn Kota Ulterra">Minn Kota Ulterra</option>
+                <option value="Minn Kota Ultrex">Minn Kota Ultrex</option>
+                <option value="MotorGuide Xi3">MotorGuide Xi3</option>
+                <option value="MotorGuide Xi5">MotorGuide Xi5</option>
+                <option value="Torqeedo">Torqeedo</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <button class="btn btn-primary" id="submit" type="submit">Submit Form</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
   </div>
 
 
@@ -136,6 +210,8 @@
   <script src="assets/js/fancybox/source/helpers/jquery.fancybox-media.js?v=1.0.6"></script>
   <script src="assets/js/chosen/chosen.jquery.min.js"></script>
   <script src="assets/js/main.js?v=1.0.0"></script>
+<script src="assets/js/popper.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
 
 
 </body>
