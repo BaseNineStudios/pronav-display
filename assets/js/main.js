@@ -1,10 +1,62 @@
 // jshint -W1
 (function (pronav, $, undefined) {
 
+    var contacts = [];
+    if(typeof(Storage) !== "undefined") {
+      contacts = JSON.parse(localStorage.getItem("contacts"));
+    }
+
+    function submitInfo(data) {
+      var pref = [];
+        var name = $("#name").val();
+        $.each($(".pref"), function(k, v) {
+          if(v.checked)
+            pref.push($(v).val());
+        });
+        var phone = $("#phone").val();
+        var email = $("#email").val();
+        var motor = $("#model").val();
+
+        var info = {
+          name: name,
+          contact_pref: JSON.stringify(pref),
+          phone: phone,
+          email: email,
+          motor_model: motor
+        };
+        if(contacts === null)
+          contacts = [];
+
+        contacts.push(info);
+        $("form input").val("");
+        localStorage.setItem("contacts", JSON.stringify(contacts));
+        console.log(localStorage.getItem("contacts"));
+    }
+
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+
+    (function() {
+      'use strict';
+      window.addEventListener('load', function() {
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        var forms = document.getElementsByClassName('needs-validation');
+        // Loop over them and prevent submission
+        var validation = Array.prototype.filter.call(forms, function(form) {
+          form.addEventListener('submit', function(event) {
+            if (form.checkValidity() === false) {
+              event.preventDefault();
+              event.stopPropagation();
+            } else {
+              submitInfo();
+            }
+            form.classList.add('was-validated');
+          }, false);
+        });
+      }, false);
+    })();
+
     $(window)
         .on('load', function () {
-
-
 
           var mainHeight = $('.main-page').outerHeight();
           var footerHeight = $('.footer').outerHeight();
@@ -56,6 +108,70 @@
         }); // window scroll
 
     $(document).ready(function () {
+
+
+      $("#all").click(function () {
+        var checked = $(this).prop('checked');
+        $(".pref").prop('checked', checked);
+        if(checked) {
+          $("#phone-group, #email-group").show(500);
+          $('#all_lbl').text("Deselect All");
+          $("#phone").prop("required", true);
+          $("#email").prop("required", true);
+        } else {
+          $("#phone-group, #email-group").hide(500);
+          $('#all_lbl').text("Select All");
+          $("#phone").prop("required", false);
+          $("#email").prop("required", false);
+        }
+      });
+
+      $(document).on('click', '#phone_chk', function(e) {
+        if(this.checked) {
+          $("#phone-group").show(500);
+          $("#phone").prop("required", true);
+        } else {
+          if(!$("#text_chk").prop("checked")) {
+            $("#phone-group").hide(500);
+            $("#phone").prop("required", false);
+          }
+          $("#all").prop("checked", false);
+          $("#all_lbl").text("Select All");
+        }
+      });
+
+      $(document).on('click', '#text_chk', function(e) {
+        if(this.checked) {
+          $("#phone-group").show(500);
+          $("#phone").prop("required", true);
+        } else {
+          if(!$("#phone_chk").prop("checked")) {
+            $("#phone-group").hide(500);
+            $("#phone").prop("required", false);
+          }
+          $("#all").prop("checked", false);
+          $("#all_lbl").text("Select All");
+        }
+      });
+
+      $(document).on('click', '#email_chk', function(e) {
+        if(this.checked) {
+          $("#email-group").show(500);
+          $("#email").prop("required", true);
+        } else {
+          $("#email-group").hide(500);
+          $("#all").prop("checked", false);
+          $("#all_lbl").text("Select All");
+          $("#phone").prop("required", false);
+        }
+      });
+
+
+
+
+
+
+
 
       $(document).on('fancybox-cleanup', function(){
         $('video,audio').trigger('stop');
